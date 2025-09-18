@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     float xInput;
     float yInput;
 
+    int score = 0;
+    public int winningScore = 5; 
+
+    public gameObject winText; //reference to the win text object
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,5 +35,19 @@ public class PlayerController : MonoBehaviour
         yInput = Input.GetAxis("Vertical"); //up and down arrow keys
         
         rb.AddForce(xInput * speed, 0, yInput * speed); //to move the ball
+    }
+
+    private void OnTriggerEnter(Collider other) //other variable stores the object that collides with the player(object is coin)
+    {
+        if (other.gameObject.tag == "Coin") //if the player collides with a coin
+        {
+            other.gameObject.SetActive(false); //deactivates the coin
+            score++; //increments the score by 1
+
+            if(score >= winningScore) //if the score is greater than or equal to the winning score
+            {
+                winText.SetActive(true); //activates the win text
+            }
+        }
     }
 }
