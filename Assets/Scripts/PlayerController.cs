@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false); //deactivates the coin
             score++; //increments the score by 1
             print("Score: " + score); //prints the score in the console
+            
 
             if(score >= winningScore) //if the score is greater than or equal to the winning score
             {
